@@ -1,0 +1,33 @@
+{
+  "name": "nodejs-ts-todo",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "5.0.2",
+    "@types/express": "5.0.1",
+    "@types/node": "22.14.0"
+  },
+  "dependencies": {
+    "@types/body-parser": "1.19.5",
+    "@types/cors": "2.8.17",
+    "bcrypt": "5.1.1",
+    "body-parser": "2.2.0",
+    "cors": "2.8.5",
+    "express": "4.21.2",
+    "inversify": "6.2.2",
+    "inversify-express-utils": "6.5.0",
+    "lowdb": "7.0.1",
+    "reflect-metadata": "0.2.2",
+    "uuid": "11.1.0"
+  }
+}

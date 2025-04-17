@@ -6,4 +6,4 @@ export interface User {
 export interface UserRepository {
   findUserByUsername(username: string): Promise<User | null>;
   createUser(user: User): Promise<User>;
-} 
+}

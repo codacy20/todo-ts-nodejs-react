@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 
 @injectable()
 export class TaskService {
-  constructor(@inject(TYPES.TaskRepository) private taskRepository: Repository<Task>) { }
+  constructor(@inject(TYPES.TaskRepository) private taskRepository: Repository<Task>) {}
 
   async getAllTasks(userId: string): Promise<Task[]> {
     return await this.taskRepository.findAll(userId);

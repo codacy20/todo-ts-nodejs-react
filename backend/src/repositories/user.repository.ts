@@ -24,7 +24,7 @@ export class UserRepositoryImpl implements UserRepository {
 
   async findUserByUsername(username: string): Promise<User | null> {
     await this.db.read();
-    return this.db.data.users.find(user => user.username === username) || null;
+    return this.db.data.users.find((user) => user.username === username) || null;
   }
 
   async createUser(user: User): Promise<User> {
@@ -33,4 +33,4 @@ export class UserRepositoryImpl implements UserRepository {
     await this.db.write();
     return user;
   }
-} 
+}

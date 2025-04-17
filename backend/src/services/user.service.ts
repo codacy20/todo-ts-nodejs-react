@@ -6,9 +6,7 @@ import { TYPES } from '../types.js';
 
 @injectable()
 export class UserService {
-  constructor(
-    @inject(TYPES.UserRepository) private userRepository: UserRepository
-  ) { }
+  constructor(@inject(TYPES.UserRepository) private userRepository: UserRepository) {}
 
   async createUser(username: string, password: string): Promise<UserModel> {
     const existingUser = await this.userRepository.findUserByUsername(username);
@@ -29,4 +27,4 @@ export class UserService {
 
     return compare(password, user.passwordHash);
   }
-} 
+}

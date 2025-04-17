@@ -1,3 +1,13 @@
+declare global {
+  namespace Express {
+    interface Request {
+      user: {
+        username: string;
+      };
+    }
+  }
+}
+
 export const TYPES = {
   TaskService: Symbol.for('TaskService'),
   TaskRepository: Symbol.for('TaskRepository'),

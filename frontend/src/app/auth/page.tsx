@@ -24,21 +24,36 @@ export default function Auth() {
         setIsLoading(true);
 
         try {
-
-            const base64 = btoa(`${username}:${password}`);
-            const response = await fetch('http://localhost:3000/tasks', {
-                method: 'GET',
+            const endpoint = isLogin ? '/login' : '/register';
+            const response = await fetch(`http://localhost:3000/users${endpoint}`, {
+                method: 'POST',
                 headers: {
-                    'Authorization': `Basic ${base64}`,
+                    'Content-Type': 'application/json',
                 },
+                body: JSON.stringify({ username, password }),
             });
 
             if (!response.ok) {
-                throw new Error('Invalid username or password');
+                const data = await response.json();
+                throw new Error(data.error || 'Authentication failed');
+            }
+
+            // After successful registration, automatically log in
+            if (!isLogin) {
+                const loginResponse = await fetch('http://localhost:3000/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (!loginResponse.ok) {
+                    throw new Error('Registration successful but login failed');
+                }
             }
 
             localStorage.setItem('credentials', JSON.stringify({ username, password }));
-            
             router.push('/dashboard');
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred');
@@ -172,4 +187,4 @@ export default function Auth() {
             `}</style>
         </div>
     );
-} 
+}
